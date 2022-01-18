@@ -1,0 +1,22 @@
+{
+  "name": "stratego.martijndwars.nl",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "angular": "1.6.7",
+    "angular-resource": "1.6.7",
+    "angular-route": "1.6.7",
+    "bootstrap": "3.3.7",
+    "css-loader": "^6.5.1",
+    "jquery": "2.1.1",
+    "lodash": "4.17.4",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js --mode development"
+  }
+}

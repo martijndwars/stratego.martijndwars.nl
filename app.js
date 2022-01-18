@@ -1,4 +1,18 @@
-var app = angular.module('xdoc', ['ngRoute', 'ngMeta']);
+var jQuery = require('bootstrap');
+var angular = require('angular');
+require('angular-resource');
+require('angular-route');
+require('jquery');
+require('lodash');
+
+// Styles
+require('bootstrap/dist/css/bootstrap.css');
+require('./style/global.css');
+require('./style/module.css');
+require('./style/search.css');
+require('./style/source.css');
+
+var app = angular.module('xdoc', ['ngRoute']);
 
 app.value('baseUrl', window.location.origin + '/');
 
@@ -29,7 +43,7 @@ Strategy.prototype.lines = function () {
   return this.start + '-' + this.end;
 };
 
-app.run(function($rootScope, $location, moduleService, ngMeta) {
+app.run(function($rootScope, $location, moduleService) {
   $rootScope.query = '';
 
   $rootScope.search = function() {
@@ -57,9 +71,6 @@ app.run(function($rootScope, $location, moduleService, ngMeta) {
   moduleService.getPackages().then(function (packages) {
     $rootScope.packages = packages;
   });
-
-  // Initiate ngMeta
-  ngMeta.init();
 });
 
 app.filter('lines', function () {
@@ -204,3 +215,8 @@ $(document).on('keydown', function (e) {
   }
 });
 
+require('./controller/ErrorController.js')(app);
+require('./controller/ModuleController.js')(app);
+require('./controller/PackageController.js')(app);
+require('./controller/SearchController.js')(app);
+require('./controller/SourceController.js')(app);
