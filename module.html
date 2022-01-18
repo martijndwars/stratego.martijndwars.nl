@@ -1,0 +1,76 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{module.name}}</li>
+    <li class="breadcrumb-aside hidden-xs"><a ng-href="https://github.com/metaborg/strategoxt/edit/master/strategoxt/stratego-libraries/lib/spec/{{module.name}}.str" class="pull-right"><i class="fab fa-github"></i> Edit on GitHub</a></li>
+  </ol>
+</nav>
+
+<div class="page-header">
+	<h1>{{module.name}}</h1>
+</div>
+
+<h2>Statistics</h2>
+<table class="table table-bordered summary">
+	<tr>
+		<th>Strategies</th>
+		<td>{{module.strategies.length}}</td>
+	</tr>
+	<tr ng-repeat="author in module.authors">
+		<th>Author</th>
+		<td>{{author}}</td>
+	</tr>
+	<tr ng-repeat="see in module.see">
+		<th>See</th>
+		<td><a ng-href="module/{{see}}">{{see}}</a></td>
+	</tr>
+	<tr>
+		<th>Source</th>
+		<td><a ng-href="source/{{module.name}}.str.html">{{module.name}}.str</a></td>
+	</tr>
+</table>
+
+<h2>Description</h2>
+<p class="description">{{module.description}}</p>
+
+<h2>Strategies</h2>
+<input type="search" id="filter" placeholder="Click 'F' to filter" ng-model="filter"/>
+
+<ul class="strategies">
+	<li ng-repeat="strategy in module.strategies | filter:filter" id="{{strategy.name}}">
+		<h5>
+			{{strategy.name}} <span><a href="source/{{module.name}}.str.html#{{strategy.lines()}}">(source)</a></span>
+		</h5>
+		
+		<p class="description">{{strategy.description}}</p>
+
+		<pre class="source" ng-bind-html="source | lines:strategy | unsafe"></pre>
+
+		<dl class="dl-horizontal">
+			<div ng-if="strategy.since">
+				<dt>Since:</dt>
+				<dd>{{strategy.since}}</dd>
+			</div>
+
+			<div ng-repeat="type in strategy.types">
+				<dt>Type:</dt>
+				<dd>{{type}}</dd>
+			</div>
+
+			<div ng-repeat="param in strategy.params track by $index">
+				<dt>Param:</dt>
+				<dd>{{param}}</dd>
+			</div>
+
+			<div ng-repeat="note in strategy.notes">
+				<dt>Note:</dt>
+				<dd>{{note}}</dd>
+			</div>
+
+			<div ng-repeat="see in strategy.see">
+				<dt>See:</dt>
+				<dd>{{see}}</dd>
+			</div>
+		</dl>
+	</li>
+</ul>

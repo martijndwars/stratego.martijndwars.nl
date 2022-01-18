@@ -1,0 +1,18 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active">Home</li>
+  </ol>
+</nav>
+
+<table class="table table-responsive table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Packages</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="package in packages">
+			<td><a ng-href="package/{{package.name}}">{{package.name}}</a></td>
+		</tr>
+	</tbody>
+</table>

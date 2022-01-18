@@ -1,0 +1,69 @@
+<!doctype html>
+<html ng-app="xdoc">
+  <head>
+    <title>Stratego API Documentation</title>
+
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="fragment" content="!"/>
+    <meta name="prerender-status-code" content="{{ngMeta['prerender-status-code']}}" ng-if="ngMeta['prerender-status-code']"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="favicon.ico"/>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
+    <link rel="stylesheet" href="style/global.css"/>
+    <link rel="stylesheet" href="style/module.css"/>
+    <link rel="stylesheet" href="style/source.css"/>
+    <link rel="stylesheet" href="style/search.css"/>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-resource.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ng-meta/1.0.2/ngMeta.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//use.fontawesome.com/releases/v5.0.6/js/all.js" defer></script>
+
+    <script src="app.js"></script>
+    <script src="controller/PackageController.js"></script>
+    <script src="controller/ModuleController.js"></script>
+    <script src="controller/SearchController.js"></script>
+    <script src="controller/SourceController.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="search-container">
+        <input
+          type="search"
+          id="search"
+          placeholder="Click 'S' or '/' to search"
+          ng-model="query"
+          ng-change="search()"
+          ng-model-options="{debounce: 200}"
+          autofocus
+          />
+      </div>
+      
+      <div class="row">
+        <div class="col-md-8 col-sm-8">
+            <div ng-view autoscroll></div>
+        </div>
+        <div class="col-md-4 col-sm-4 sidebar">
+            <h5>Packages</h5>
+            <ul class="packages">
+                <li ng-repeat="package in packages">
+                    <a ng-href="package/{{package.name}}">{{package.name}}</a>
+                    <ul>
+                        <li ng-repeat="module in package.modules">
+                            <a ng-href="module/{{module}}">{{module.substr(package.name.length+1)}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </body>
+</html>

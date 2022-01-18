@@ -1,0 +1,17 @@
+{
+"name": "system/io/process",
+"description": "\n\n",
+"strategies": [{
+               "name": "exit",
+               "description": "\nAbort execution with exit value n.\n\n\n",
+               "start": 12,
+               "end": 13,
+               "types": ["Int -> _"],
+               "params": [],
+               "notes": [],
+               "see": [],
+               "since": ""
+               }],
+"authors": [],
+"see": []
+}

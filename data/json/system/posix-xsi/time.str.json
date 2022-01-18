@@ -1,0 +1,17 @@
+{
+"name": "system/posix-xsi/time",
+"description": "\n\n",
+"strategies": [{
+               "name": "dtime",
+               "description": "\n\n",
+               "start": 3,
+               "end": 4,
+               "types": [],
+               "params": [],
+               "notes": [],
+               "see": [],
+               "since": ""
+               }],
+"authors": [],
+"see": []
+}
